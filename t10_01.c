@@ -29,6 +29,12 @@ int main(int _argc, char **_argv) {
     // Parse FILE dorm
     parse_file_drm(finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
 
+    // Print all dorm details
+    print_all_dorm(dorms, prt_dorm);
+
+    // Print all student details
+    student_print_detail(mhs, prt_std);
+
     while (stop != 1) {
         fflush(stdin);
         fgets(input, sizeof(input), stdin);
@@ -36,20 +42,10 @@ int main(int _argc, char **_argv) {
         strcpy(kalimat, input);
 
         strcpy(command, strtok(kalimat, "#"));
-        if (strcmp(command, "student-print-all-detail") == 0) {
-            student_print_detail(mhs, prt_std);
-            print_all_dorm(dorms, prt_dorm);
-        } else if (strcmp(command, "dorm-print-all-detail") == 0) {
-            print_all_dorm(dorms, prt_dorm);
-        } else if (strcmp(command, "---") == 0) {
-            // Stop the loop and proceed to print the output below
-            stop = 1;
+        if (strcmp(command, "---") == 0) {
+            stop = 1; // Stop the loop
         }
     }
-
-    // Print the output after the stop command
-    student_print_detail(mhs, prt_std);
-    print_all_dorm(dorms, prt_dorm);
 
     free(mhs);
     free(dorms);
