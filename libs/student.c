@@ -13,7 +13,11 @@ struct student_t create_student(char *std_id, char *std_name, char *std_year, en
     std.dorm = NULL;
     return std;
     }
-
+void student_print_all(struct student_t *_student, unsigned short int _size) {
+    for (int i = 0; i < _size; i++) {
+        printf("%s|%s|%s|%s\n", _student[i].id, _student[i].name, _student[i].year, gender_to_text(_student[i].gender));
+    }
+}
 
 void student_print_detail(struct student_t *_student, unsigned short int _size){
 
