@@ -58,5 +58,6 @@ void parse_file_drm ( FILE *fdrm, struct dorm_t *dorms, unsigned short int *size
             }
         fflush(fdrm);
         fclose(fdrm);
+        
 }
 

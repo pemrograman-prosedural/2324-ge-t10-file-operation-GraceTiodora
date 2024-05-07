@@ -20,4 +20,5 @@ unsigned short int gender_to_value (char *_gender){
     if(strcmp(_gender, "male") == 0) _value = 0;
     else if(strcmp(_gender, "female") == 0) _value = 1;
     return _value;
+    
 }
