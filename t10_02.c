@@ -91,6 +91,7 @@ int main() {
     fclose(student_file);
     fclose(dorm_file);
 
+
     free(students);
     free(dorms);
 

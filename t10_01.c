@@ -28,15 +28,10 @@ int main(int _argc, char **_argv)
     // Parse FILE dorm
     parse_file_drm(finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
 
-    // Output buffer for student details
-    char student_output_buffer[10000]; // Adjust buffer size as needed
-    student_output_buffer[0] = '\0'; // Initialize buffer to empty string
+    // Flag to print output
+    int print_output = 0;
 
-    // Output buffer for dorm details
-    char dorm_output_buffer[10000]; // Adjust buffer size as needed
-    dorm_output_buffer[0] = '\0'; // Initialize buffer to empty string
-
-    while (1) {
+    while (!print_output) {
         fflush(stdin);
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\r\n")] = 0;
@@ -44,23 +39,15 @@ int main(int _argc, char **_argv)
 
         strcpy(command, strtok(kalimat, "#"));
         if (strcmp(command, "student-print-all-detail") == 0) {
-            // Append student details to student_output_buffer
-            student_print_detail_to_buffer(mhs, prt_std, student_output_buffer);
+            student_print_detail(mhs, prt_std);
 
         } else if (strcmp(command, "dorm-print-all-detail") == 0) {
-            // Append dorm details to dorm_output_buffer
-            dorm_print_all_detail_to_buffer(dorms, prt_dorm, dorm_output_buffer);
+            print_all_dorm(dorms, prt_dorm);
             
         } else if (strcmp(command, "---") == 0) {
-            break; // Exit loop
+            print_output = 1;
         }
     }
-
-    // Print student details
-    printf("%s\n", student_output_buffer);
-    
-    // Print dorm details
-    printf("%s\n", dorm_output_buffer);
 
     free(mhs);
     free(dorms);
